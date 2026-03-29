@@ -64,7 +64,7 @@ python scripts/run_eval.py --config config/default.yaml
 
 - [x] Day 0 — Repo boilerplate scaffolded (modules + scripts in place).
 
-- [ ] Day 1 (Person A) — Finalize corpus choice (Wikipedia vs dataset evidence).
+- [x] Day 1 (Person A) — Finalize corpus choice (Wikipedia vs dataset evidence).
 - [ ] Day 1 (Person A) — Decide chunking (150–300 words, 30-word overlap).
 - [x] Day 1 (Person A) — Setup retrieval module (scaffolded).
 - [x] Day 1 (Person B) — Finalize dataset (TruthfulQA).
