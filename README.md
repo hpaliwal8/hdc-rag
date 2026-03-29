@@ -80,7 +80,7 @@ python scripts/ollama_check.py --config config/default.yaml
 - [x] Day 0 — Repo boilerplate scaffolded (modules + scripts in place).
 
 - [x] Day 1 (Person A) — Finalize corpus choice (Wikipedia vs dataset evidence).
-- [ ] Day 1 (Person A) — Decide chunking (150–300 words, 30-word overlap).
+- [x] Day 1 (Person A) — Decide chunking (150–300 words, 30-word overlap).
 - [x] Day 1 (Person A) — Setup retrieval module (scaffolded).
 - [x] Day 1 (Person B) — Finalize dataset (TruthfulQA).
 - [x] Day 1 (Person B) — Define hallucination rule (unsupported OR contradicted).
@@ -88,7 +88,7 @@ python scripts/ollama_check.py --config config/default.yaml
 - [ ] Day 1 (Shared) — Finalize schema, baseline model, pilot size (20–30).
 - [ ] Day 1 (Shared) — Lock main metric: Hallucination Reduction (%).
 
-- [ ] Day 2 (Person A) — Load corpus.
+- [x] Day 2 (Person A) — Load corpus.
 - [ ] Day 2 (Person A) — Clean + chunk text.
 - [x] Day 2 (Person B) — Load dataset.
 - [x] Day 2 (Person B) — Normalize fields (id, question, reference_answer).
