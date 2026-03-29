@@ -174,6 +174,16 @@ Correction (if needed)
 Final Answer
 ```
 
+## Flow Of Operation
+
+1. Prepare TruthfulQA subset into `data/processed/questions.jsonl`.
+2. Place Wikipedia `.txt` articles in `data/raw/corpus/`.
+3. Build passages (`scripts/build_corpus.py`) and FAISS index (`scripts/build_index.py`).
+4. Run baseline-only or full pipeline:
+   - Baseline-only: `scripts/run_pipeline.py --skip_retrieval`
+   - Full: `scripts/run_pipeline.py`
+5. Inspect outputs in `data/outputs/` (use `scripts/preview_outputs.py`).
+6. Evaluate hallucination reduction with `scripts/run_eval.py`.
 ## Next Steps
 
 1. Decide corpus source and chunking settings, then run `scripts/build_corpus.py` and `scripts/build_index.py`.
