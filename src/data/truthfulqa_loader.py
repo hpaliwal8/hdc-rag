@@ -74,7 +74,7 @@ def load_truthfulqa_subset(
     seed: int = 42,
     stratify_by_category: bool = True,
     dataset_name: str = "domenicrosati/TruthfulQA",
-    split: str = "generation",
+    split: str = "train",
 ) -> pd.DataFrame:
     """
     Load a reproducible subset of TruthfulQA.
@@ -89,7 +89,14 @@ def load_truthfulqa_subset(
     Returns:
         pd.DataFrame with normalized columns.
     """
-    ds = load_dataset(dataset_name, split=split)
+    try:
+        ds = load_dataset(dataset_name, split=split)
+    except ValueError as e:
+        # Fallback for datasets that only expose a single split (often "train").
+        if 'Unknown split' in str(e) and split != "train":
+            ds = load_dataset(dataset_name, split="train")
+        else:
+            raise
     rows = [dict(x) for x in ds]
     samples = [_normalize_row(row, idx=i) for i, row in enumerate(rows)]
 

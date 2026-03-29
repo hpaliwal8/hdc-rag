@@ -17,7 +17,7 @@ retrieval:
   top_k: 5
 
 baseline:
-  mode: dummy  # options: dummy | custom
+  mode: custom  # options: dummy | custom
 
 correction:
   mode: dummy  # options: dummy | custom

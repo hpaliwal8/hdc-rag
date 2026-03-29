@@ -90,15 +90,15 @@ python scripts/ollama_check.py --config config/default.yaml
 
 - [ ] Day 2 (Person A) — Load corpus.
 - [ ] Day 2 (Person A) — Clean + chunk text.
-- [ ] Day 2 (Person B) — Load dataset.
-- [ ] Day 2 (Person B) — Normalize fields (id, question, reference_answer).
+- [x] Day 2 (Person B) — Load dataset.
+- [x] Day 2 (Person B) — Normalize fields (id, question, reference_answer).
 - [x] Day 2 (Person B) — Write baseline prompt.
 
 - [ ] Day 3 (Person A) — Choose embedding model (bge-small / e5-base).
 - [ ] Day 3 (Person A) — Embed small subset.
 - [ ] Day 3 (Person A) — Build FAISS index.
 - [x] Day 3 (Person B) — Implement `generate_baseline(question)`.
-- [ ] Day 3 (Person B) — Run baseline on 5–10 samples.
+- [x] Day 3 (Person B) — Run baseline on 5–10 samples.
 - [ ] Day 3 (Shared) — Inspect baseline answers.
 
 - [ ] Day 4 (Person A) — Implement `retrieve(question, k=5)`.

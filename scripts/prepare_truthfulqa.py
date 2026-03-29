@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument("--subset_size", type=int, default=120)
     parser.add_argument("--no_stratify", action="store_true")
     parser.add_argument("--dataset_name", default="domenicrosati/TruthfulQA")
-    parser.add_argument("--split", default="generation")
+    parser.add_argument("--split", default="train")
     args = parser.parse_args()
 
     setup_logging()
