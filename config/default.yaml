@@ -22,6 +22,12 @@ baseline:
 correction:
   mode: dummy  # options: dummy | custom
 
+llm:
+  provider: ollama
+  model: ministral-3:8b
+  dev_model: ministral-3:3b
+  use_dev_model: false
+
 support:
   supported_threshold: 0.75
   uncertain_threshold: 0.5

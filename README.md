@@ -57,6 +57,8 @@ python scripts/run_eval.py --config config/default.yaml
 - Baseline + correction are stubs. Fill in your preferred LLM calls.
 - Keep the corpus small early (5K–15K passages) to iterate fast.
 - Use the retrieval sanity check before moving to detection.
+- LLM model selection is centralized in `config/default.yaml` under `llm`.
+- To switch to the dev model without editing config, set `HDC_RAG_USE_DEV_MODEL=1`.
 
 ## Day-Wise To-Do (From Plan)
 
