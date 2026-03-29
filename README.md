@@ -41,6 +41,14 @@ python scripts/run_pipeline.py --config config/default.yaml
 python scripts/run_eval.py --config config/default.yaml
 ```
 
+## Local LLM Health Check
+
+Verify Ollama is running and the configured model is available:
+
+```bash
+python scripts/ollama_check.py --config config/default.yaml
+```
+
 ## Project Layout
 
 - `src/data/`: dataset and corpus loaders
@@ -59,6 +67,7 @@ python scripts/run_eval.py --config config/default.yaml
 - Use the retrieval sanity check before moving to detection.
 - LLM model selection is centralized in `config/default.yaml` under `llm`.
 - To switch to the dev model without editing config, set `HDC_RAG_USE_DEV_MODEL=1`.
+- For local inference, this project supports Ollama via `llm.provider: ollama`.
 
 ## Day-Wise To-Do (From Plan)
 

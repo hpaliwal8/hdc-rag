@@ -24,9 +24,18 @@ correction:
 
 llm:
   provider: ollama
+  endpoint: http://localhost:11434
   model: ministral-3:8b
   dev_model: ministral-3:3b
   use_dev_model: false
+  temperature: 0.2
+  top_p: 0.9
+  max_tokens: 256
+  prompt:
+    baseline_system: "You are a precise, factual assistant. Answer concisely and do not speculate."
+    baseline_style: "Answer the question concisely and factually. If you are unsure, say you don't know."
+    correction_system: "You are a grounded assistant. Use only the provided evidence."
+    correction_style: "Rewrite the answer using ONLY the evidence. If insufficient, say you don't know."
 
 support:
   supported_threshold: 0.75
