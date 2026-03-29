@@ -1,0 +1,27 @@
+paths:
+  corpus_dir: data/raw/corpus
+  corpus_passages: data/processed/corpus_passages.jsonl
+  index_dir: data/index
+  questions_path: data/processed/questions.jsonl
+  outputs_dir: data/outputs
+
+chunking:
+  chunk_words: 200
+  overlap_words: 30
+
+embedding:
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+  batch_size: 32
+
+retrieval:
+  top_k: 5
+
+baseline:
+  mode: dummy  # options: dummy | custom
+
+correction:
+  mode: dummy  # options: dummy | custom
+
+support:
+  supported_threshold: 0.75
+  uncertain_threshold: 0.5
