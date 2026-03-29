@@ -58,6 +58,87 @@ python scripts/run_eval.py --config config/default.yaml
 - Keep the corpus small early (5K–15K passages) to iterate fast.
 - Use the retrieval sanity check before moving to detection.
 
+## Day-Wise To-Do (From Plan)
+
+- [x] Day 0 — Repo boilerplate scaffolded (modules + scripts in place).
+
+- [ ] Day 1 (Person A) — Finalize corpus choice (Wikipedia vs dataset evidence).
+- [ ] Day 1 (Person A) — Decide chunking (150–300 words, 30-word overlap).
+- [x] Day 1 (Person A) — Setup retrieval module (scaffolded).
+- [x] Day 1 (Person B) — Finalize dataset (TruthfulQA).
+- [x] Day 1 (Person B) — Define hallucination rule (unsupported OR contradicted).
+- [x] Day 1 (Person B) — Setup baseline + evaluation modules (scaffolded).
+- [ ] Day 1 (Shared) — Finalize schema, baseline model, pilot size (20–30).
+- [ ] Day 1 (Shared) — Lock main metric: Hallucination Reduction (%).
+
+- [ ] Day 2 (Person A) — Load corpus.
+- [ ] Day 2 (Person A) — Clean + chunk text.
+- [ ] Day 2 (Person B) — Load dataset.
+- [ ] Day 2 (Person B) — Normalize fields (id, question, reference_answer).
+- [ ] Day 2 (Person B) — Write baseline prompt.
+
+- [ ] Day 3 (Person A) — Choose embedding model (bge-small / e5-base).
+- [ ] Day 3 (Person A) — Embed small subset.
+- [ ] Day 3 (Person A) — Build FAISS index.
+- [ ] Day 3 (Person B) — Implement `generate_baseline(question)`.
+- [ ] Day 3 (Person B) — Run baseline on 5–10 samples.
+- [ ] Day 3 (Shared) — Inspect baseline answers.
+
+- [ ] Day 4 (Person A) — Implement `retrieve(question, k=5)`.
+- [ ] Day 4 (Person A) — Run retrieval on 10–15 questions.
+- [ ] Day 4 (Person A) — Retrieval sanity check (top-3 relevant?).
+- [ ] Day 4 (Person B) — Logging pipeline.
+- [ ] Day 4 (Person B) — Store outputs in schema.
+
+- [ ] Day 5 (Person A) — Finalize retriever.
+- [ ] Day 5 (Person B) — Implement support scoring (max cosine similarity).
+- [ ] Day 5 (Person B) — Define thresholds (>=0.75 supported, 0.5–0.75 uncertain, <0.5 unsupported).
+- [ ] Day 5 (Shared) — Validate on 5–10 examples.
+
+- [ ] Day 6 (Person A) — Design correction prompt.
+- [ ] Day 6 (Person B) — Implement gating logic.
+
+- [ ] Day 7 (Person A) — Implement `correct_answer(question, baseline, evidence)`.
+- [ ] Day 7 (Person B) — Run detection on same samples.
+- [ ] Day 7 (Shared) — Compare baseline vs corrected grounding.
+
+- [ ] Day 8 (Person A) — Refine correction prompt.
+- [ ] Day 8 (Person B) — Build evaluation script (support rate, hallucination rate).
+
+- [ ] Day 9 (Person A) — Run correction pipeline (20–30 samples).
+- [ ] Day 9 (Person B) — Compute baseline and corrected hallucination rates.
+- [ ] Day 9 (Shared) — Inspect full pipeline table.
+
+- [ ] Day 10 (Person A) — Lock chunk size, k value, embedding model.
+- [ ] Day 10 (Person B) — Lock thresholds, scoring method.
+
+- [ ] Day 11 (Person A) — Run correction on full set (100–200).
+- [ ] Day 11 (Person B) — Ensure baseline outputs complete.
+
+- [ ] Day 12 (Person A) — Ablation: top-3 vs top-5 retrieval.
+- [ ] Day 12 (Person B) — Compute baseline stats.
+
+- [ ] Day 13 (Person A) — Generate final corrected answers.
+- [ ] Day 13 (Person B) — Compute Hallucination Reduction (%).
+
+- [ ] Day 14 (Person A) — Analyze failures (retrieval vs prompt).
+- [ ] Day 14 (Person B) — Compute Precision / Recall / F1 (if labels exist).
+
+- [ ] Day 15 (Person A) — Finalize configs.
+- [ ] Day 15 (Person B) — Prepare tables, plots, examples.
+
+- [ ] Day 16 (Person A) — Write retrieval + correction methods.
+- [ ] Day 16 (Person B) — Write baseline + detection + metrics methods.
+
+- [ ] Day 17 (Person A) — Prepare qualitative cases.
+- [ ] Day 17 (Person B) — Write results section.
+
+- [ ] Day 18 (Person A + B) — Error analysis table (type, example, cause).
+
+- [ ] Day 19 (Shared) — Slides + demo (2–3 strong examples).
+
+- [ ] Day 20 (Shared) — Final polish (clean code, verify demo, final report).
+
 ## Finalized Architecture
 
 ```bash
@@ -76,7 +157,11 @@ Correction (if needed)
 Final Answer
 ```
 
+## Next Steps
+
+1. Decide corpus source and chunking settings, then run `scripts/build_corpus.py` and `scripts/build_index.py`.
+2. Generate the TruthfulQA subset with `scripts/prepare_truthfulqa.py` and confirm the schema output.
+3. Implement baseline and correction LLM calls, then run `scripts/retrieval_sanity_check.py` before full pipeline runs.
 
 ## Knowledge Graph
-![Knowledge Graph](https://github.com/hpaliwal8/hdc-rag/blob/main/knowledge-graph.png "Logo Title Text 1")
-
+![Knowledge Graph](https://github.com/hpaliwal8/hdc-rag/blob/main/knowledge-graph.png "KG")

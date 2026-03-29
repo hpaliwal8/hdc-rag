@@ -12,7 +12,6 @@ from src.retrieval.faiss_index import load_index
 from src.retrieval.retriever import Retriever, load_passages
 from src.baseline.generation import generate_baseline
 from src.detection.support_scoring import score_support, label_support
-from src.detection.gating import should_correct
 from src.correction.generation import correct_answer
 from src.utils.io import read_jsonl, write_jsonl, ensure_dir
 from src.utils.logging import setup_logging
@@ -31,6 +30,9 @@ def main() -> None:
     index_dir = config["paths"]["index_dir"]
     questions_path = config["paths"]["questions_path"]
     outputs_dir = config["paths"]["outputs_dir"]
+
+    supported_threshold = config["support"]["supported_threshold"]
+    uncertain_threshold = config["support"]["uncertain_threshold"]
 
     embedder = Embedder(
         model_name=config["embedding"]["model_name"],
@@ -51,6 +53,9 @@ def main() -> None:
     for q in questions:
         question = q["question"]
         qid = q.get("id")
+        category = q.get("category")
+        source = q.get("source")
+        reference_answer = q.get("reference_answer")
 
         retrieved = retriever.retrieve(question)
         passages_payload = [
@@ -62,11 +67,11 @@ def main() -> None:
         base_score = score_support(baseline, passages_payload, embedder)
         base_label = label_support(
             base_score,
-            config["support"]["supported_threshold"],
-            config["support"]["uncertain_threshold"],
+            supported_threshold,
+            uncertain_threshold,
         )
 
-        if should_correct(base_score, config):
+        if base_score < supported_threshold:
             corrected = correct_answer(question, baseline, passages_payload, config)
         else:
             corrected = baseline
@@ -74,18 +79,23 @@ def main() -> None:
         corr_score = score_support(corrected, passages_payload, embedder)
         corr_label = label_support(
             corr_score,
-            config["support"]["supported_threshold"],
-            config["support"]["uncertain_threshold"],
+            supported_threshold,
+            uncertain_threshold,
         )
 
         baseline_rows.append(
             {
                 "id": qid,
                 "question": question,
+                "category": category,
+                "source": source,
+                "reference_answer": reference_answer,
                 "answer": baseline,
+                "baseline_answer": baseline,
                 "support_score": base_score,
                 "support_label": base_label,
                 "passages": passages_payload,
+                "retrieved_passages": passages_payload,
             }
         )
 
@@ -93,10 +103,16 @@ def main() -> None:
             {
                 "id": qid,
                 "question": question,
+                "category": category,
+                "source": source,
+                "reference_answer": reference_answer,
                 "answer": corrected,
+                "baseline_answer": baseline,
+                "corrected_answer": corrected,
                 "support_score": corr_score,
                 "support_label": corr_label,
                 "passages": passages_payload,
+                "retrieved_passages": passages_payload,
             }
         )
 
