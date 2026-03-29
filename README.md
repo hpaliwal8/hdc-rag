@@ -86,12 +86,12 @@ python scripts/ollama_check.py --config config/default.yaml
 - [ ] Day 2 (Person A) — Clean + chunk text.
 - [ ] Day 2 (Person B) — Load dataset.
 - [ ] Day 2 (Person B) — Normalize fields (id, question, reference_answer).
-- [ ] Day 2 (Person B) — Write baseline prompt.
+- [x] Day 2 (Person B) — Write baseline prompt.
 
 - [ ] Day 3 (Person A) — Choose embedding model (bge-small / e5-base).
 - [ ] Day 3 (Person A) — Embed small subset.
 - [ ] Day 3 (Person A) — Build FAISS index.
-- [ ] Day 3 (Person B) — Implement `generate_baseline(question)`.
+- [x] Day 3 (Person B) — Implement `generate_baseline(question)`.
 - [ ] Day 3 (Person B) — Run baseline on 5–10 samples.
 - [ ] Day 3 (Shared) — Inspect baseline answers.
 
@@ -102,19 +102,19 @@ python scripts/ollama_check.py --config config/default.yaml
 - [ ] Day 4 (Person B) — Store outputs in schema.
 
 - [ ] Day 5 (Person A) — Finalize retriever.
-- [ ] Day 5 (Person B) — Implement support scoring (max cosine similarity).
-- [ ] Day 5 (Person B) — Define thresholds (>=0.75 supported, 0.5–0.75 uncertain, <0.5 unsupported).
+- [x] Day 5 (Person B) — Implement support scoring (max cosine similarity).
+- [x] Day 5 (Person B) — Define thresholds (>=0.75 supported, 0.5–0.75 uncertain, <0.5 unsupported).
 - [ ] Day 5 (Shared) — Validate on 5–10 examples.
 
 - [ ] Day 6 (Person A) — Design correction prompt.
-- [ ] Day 6 (Person B) — Implement gating logic.
+- [x] Day 6 (Person B) — Implement gating logic.
 
 - [ ] Day 7 (Person A) — Implement `correct_answer(question, baseline, evidence)`.
 - [ ] Day 7 (Person B) — Run detection on same samples.
 - [ ] Day 7 (Shared) — Compare baseline vs corrected grounding.
 
 - [ ] Day 8 (Person A) — Refine correction prompt.
-- [ ] Day 8 (Person B) — Build evaluation script (support rate, hallucination rate).
+- [x] Day 8 (Person B) — Build evaluation script (support rate, hallucination rate).
 
 - [ ] Day 9 (Person A) — Run correction pipeline (20–30 samples).
 - [ ] Day 9 (Person B) — Compute baseline and corrected hallucination rates.
