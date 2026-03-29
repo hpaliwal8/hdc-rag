@@ -21,6 +21,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--skip_retrieval", action="store_true")
     args = parser.parse_args()
 
     setup_logging()
@@ -34,14 +35,18 @@ def main() -> None:
     supported_threshold = config["support"]["supported_threshold"]
     uncertain_threshold = config["support"]["uncertain_threshold"]
 
-    embedder = Embedder(
-        model_name=config["embedding"]["model_name"],
-        batch_size=config["embedding"]["batch_size"],
-    )
-    index = load_index(index_dir)
-    passages = load_passages(passages_path)
-
-    retriever = Retriever(embedder, index, passages, top_k=config["retrieval"]["top_k"])
+    embedder = None
+    retriever = None
+    if not args.skip_retrieval:
+        embedder = Embedder(
+            model_name=config["embedding"]["model_name"],
+            batch_size=config["embedding"]["batch_size"],
+        )
+        index = load_index(index_dir)
+        passages = load_passages(passages_path)
+        retriever = Retriever(
+            embedder, index, passages, top_k=config["retrieval"]["top_k"]
+        )
 
     questions = list(read_jsonl(questions_path))
     if args.limit and args.limit > 0:
@@ -57,31 +62,39 @@ def main() -> None:
         source = q.get("source")
         reference_answer = q.get("reference_answer")
 
-        retrieved = retriever.retrieve(question)
-        passages_payload = [
-            {"pid": p.pid, "text": p.text, "score": p.score, "meta": p.meta}
-            for p in retrieved
-        ]
-
         baseline = generate_baseline(question, config)
-        base_score = score_support(baseline, passages_payload, embedder)
-        base_label = label_support(
-            base_score,
-            supported_threshold,
-            uncertain_threshold,
-        )
-
-        if base_score < supported_threshold:
-            corrected = correct_answer(question, baseline, passages_payload, config)
-        else:
+        if args.skip_retrieval:
+            passages_payload = []
+            base_score = None
+            base_label = None
             corrected = baseline
+            corr_score = None
+            corr_label = None
+        else:
+            retrieved = retriever.retrieve(question)
+            passages_payload = [
+                {"pid": p.pid, "text": p.text, "score": p.score, "meta": p.meta}
+                for p in retrieved
+            ]
 
-        corr_score = score_support(corrected, passages_payload, embedder)
-        corr_label = label_support(
-            corr_score,
-            supported_threshold,
-            uncertain_threshold,
-        )
+            base_score = score_support(baseline, passages_payload, embedder)
+            base_label = label_support(
+                base_score,
+                supported_threshold,
+                uncertain_threshold,
+            )
+
+            if base_score < supported_threshold:
+                corrected = correct_answer(question, baseline, passages_payload, config)
+            else:
+                corrected = baseline
+
+            corr_score = score_support(corrected, passages_payload, embedder)
+            corr_label = label_support(
+                corr_score,
+                supported_threshold,
+                uncertain_threshold,
+            )
 
         baseline_rows.append(
             {

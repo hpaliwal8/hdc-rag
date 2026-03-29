@@ -35,6 +35,12 @@ Optional flags include `--subset_size`, `--dataset_name`, `--split`, and `--no_s
 python scripts/run_pipeline.py --config config/default.yaml
 ```
 
+To run baseline only (skip retrieval/correction):
+
+```bash
+python scripts/run_pipeline.py --config config/default.yaml --skip_retrieval --limit 10
+```
+
 6. Evaluate:
 
 ```bash
