@@ -27,6 +27,8 @@ python scripts/build_index.py --config config/default.yaml
 python scripts/prepare_truthfulqa.py --config config/default.yaml
 ```
 
+Optional flags include `--subset_size`, `--dataset_name`, `--split`, and `--no_stratify`.
+
 5. Run baseline + pipeline:
 
 ```bash
@@ -55,3 +57,26 @@ python scripts/run_eval.py --config config/default.yaml
 - Baseline + correction are stubs. Fill in your preferred LLM calls.
 - Keep the corpus small early (5K–15K passages) to iterate fast.
 - Use the retrieval sanity check before moving to detection.
+
+## Finalized Architecture
+
+```bash
+[TruthfulQA Question]
+        ↓
+Baseline LLM Answer
+        ↓
+[Wikipedia Retrieval]
+        ↓
+Top-k Evidence Passages
+        ↓
+Support Scoring
+        ↓
+Correction (if needed)
+        ↓
+Final Answer
+```
+
+
+## Knowledge Graph
+![Knowledge Graph](https://github.com/hpaliwal8/hdc-rag/blob/main/knowledge-graph.png "Logo Title Text 1")
+
