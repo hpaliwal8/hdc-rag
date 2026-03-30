@@ -31,7 +31,7 @@ def main() -> None:
 
     passages = load_passages(passages_path)
     texts = passage_texts(passages)
-    vectors = embedder.encode(texts)
+    vectors = embedder.encode_passages(texts)
 
     index = build_index(vectors)
     ensure_dir(index_dir)

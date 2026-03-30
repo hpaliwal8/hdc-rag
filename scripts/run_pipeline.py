@@ -15,6 +15,7 @@ from src.detection.support_scoring import score_support, label_support
 from src.correction.generation import correct_answer
 from src.utils.io import read_jsonl, write_jsonl, ensure_dir
 from src.utils.logging import setup_logging
+from src.utils.schema import build_output_record
 
 
 def main() -> None:
@@ -45,7 +46,12 @@ def main() -> None:
         index = load_index(index_dir)
         passages = load_passages(passages_path)
         retriever = Retriever(
-            embedder, index, passages, top_k=config["retrieval"]["top_k"]
+            embedder,
+            index,
+            passages,
+            top_k=config["retrieval"]["top_k"],
+            bm25_k=config["retrieval"].get("bm25_k", 20),
+            alpha=config["retrieval"].get("alpha", 0.85),
         )
 
     questions = list(read_jsonl(questions_path))
@@ -73,7 +79,16 @@ def main() -> None:
         else:
             retrieved = retriever.retrieve(question)
             passages_payload = [
-                {"pid": p.pid, "text": p.text, "score": p.score, "meta": p.meta}
+                {
+                    "pid": p.pid,
+                    "text": p.text,
+                    "score": p.score,
+                    "dense_score": p.dense_score,
+                    "bm25_score": p.bm25_score,
+                    "title_bonus": p.title_bonus,
+                    "meta": p.meta,
+                    "title": p.meta.get("title", ""),
+                }
                 for p in retrieved
             ]
 
@@ -97,36 +112,35 @@ def main() -> None:
             )
 
         baseline_rows.append(
-            {
-                "id": qid,
-                "question": question,
-                "category": category,
-                "source": source,
-                "reference_answer": reference_answer,
-                "answer": baseline,
-                "baseline_answer": baseline,
-                "support_score": base_score,
-                "support_label": base_label,
-                "passages": passages_payload,
-                "retrieved_passages": passages_payload,
-            }
+            build_output_record(
+                sample_id=qid,
+                question=question,
+                reference_answer=reference_answer,
+                baseline_answer=baseline,
+                retrieved_passages=passages_payload,
+                answer=baseline,
+                corrected_answer=None,
+                support_score=base_score,
+                support_label=base_label,
+                category=category,
+                source=source,
+            )
         )
 
         corrected_rows.append(
-            {
-                "id": qid,
-                "question": question,
-                "category": category,
-                "source": source,
-                "reference_answer": reference_answer,
-                "answer": corrected,
-                "baseline_answer": baseline,
-                "corrected_answer": corrected,
-                "support_score": corr_score,
-                "support_label": corr_label,
-                "passages": passages_payload,
-                "retrieved_passages": passages_payload,
-            }
+            build_output_record(
+                sample_id=qid,
+                question=question,
+                reference_answer=reference_answer,
+                baseline_answer=baseline,
+                retrieved_passages=passages_payload,
+                answer=corrected,
+                corrected_answer=corrected,
+                support_score=corr_score,
+                support_label=corr_label,
+                category=category,
+                source=source,
+            )
         )
 
     ensure_dir(outputs_dir)

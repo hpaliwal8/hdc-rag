@@ -28,7 +28,10 @@ def main() -> None:
 
     rows: List[Dict] = []
     for doc in iter_text_files(corpus_dir):
-        chunks = chunk_text_words(doc["text"], chunk_words, overlap_words)
+        text = doc["text"].strip()
+        if doc.get("title"):
+            text = f"Title: {doc['title']}\n\n{text}"
+        chunks = chunk_text_words(text, chunk_words, overlap_words)
         for i, chunk in enumerate(chunks):
             rows.append(
                 {
@@ -36,6 +39,7 @@ def main() -> None:
                     "text": chunk,
                     "meta": {
                         "doc_id": doc["doc_id"],
+                        "title": doc.get("title", ""),
                         "source_path": doc["source_path"],
                         "chunk": i,
                     },

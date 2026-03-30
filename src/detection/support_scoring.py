@@ -15,9 +15,9 @@ def max_cosine_similarity(answer_vec: np.ndarray, passage_vecs: np.ndarray) -> f
 def score_support(answer: str, passages: List[Dict[str, Any]], embedder: Embedder) -> float:
     if not passages:
         return 0.0
-    answer_vec = embedder.encode([answer])[0]
+    answer_vec = embedder.encode_queries([answer])[0]
     passage_texts = [p["text"] for p in passages]
-    passage_vecs = embedder.encode(passage_texts)
+    passage_vecs = embedder.encode_passages(passage_texts)
     return max_cosine_similarity(answer_vec, passage_vecs)
 
 

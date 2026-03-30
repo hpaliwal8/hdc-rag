@@ -13,6 +13,11 @@ def correct_answer(
 ) -> str:
     mode = config.get("correction", {}).get("mode", "dummy")
     if mode == "dummy":
+        if passages:
+            top_meta = passages[0].get("meta", {})
+            title = top_meta.get("title") or top_meta.get("doc_id")
+            if question.lower().startswith("who") and title:
+                return f"According to the retrieved evidence, {title} is the most relevant answer."
         return "I don't know."
     if mode == "custom":
         prompt = build_correction_prompt(question, baseline, passages)

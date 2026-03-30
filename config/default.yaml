@@ -6,15 +6,17 @@ paths:
   outputs_dir: data/outputs
 
 chunking:
-  chunk_words: 200
-  overlap_words: 30
+  chunk_words: 220
+  overlap_words: 40
 
 embedding:
-  model_name: sentence-transformers/all-MiniLM-L6-v2
+  model_name: intfloat/e5-base-v2
   batch_size: 32
 
 retrieval:
   top_k: 5
+  bm25_k: 20
+  alpha: 0.85
 
 baseline:
   mode: custom  # options: dummy | custom

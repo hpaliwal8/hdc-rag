@@ -14,6 +14,12 @@ pip install -r requirements.txt
 
 2. Put your corpus files (plain `.txt`) under `data/raw/corpus/`.
 
+Optional: export a small Wikipedia subset directly into `data/raw/corpus/`:
+
+```bash
+python scripts/export_wikipedia_subset.py --config config/default.yaml --limit 25 --query "Who discovered gravity?"
+```
+
 3. Build passages + index:
 
 ```bash
