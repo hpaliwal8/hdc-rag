@@ -1,5 +1,6 @@
 paths:
-  questions_path: data/processed/questions.jsonl
+  hotpotqa_path: data/processed/hotpotqa.jsonl
+  truthfulqa_path: data/processed/truthfulqa.jsonl
   outputs_dir: data/outputs
 
 baseline:

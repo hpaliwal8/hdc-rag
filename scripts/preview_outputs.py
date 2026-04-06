@@ -18,6 +18,8 @@ def main() -> None:
     for i, row in enumerate(rows, start=1):
         print("=" * 80)
         print(f"[{i}] ID: {row.get('id')}")
+        if row.get("dataset"):
+            print(f"Dataset: {row.get('dataset')}")
         print(f"Q: {row.get('question')}")
         if row.get("reference_answer"):
             print(f"Ref: {row.get('reference_answer')}")

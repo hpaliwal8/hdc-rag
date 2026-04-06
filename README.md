@@ -13,7 +13,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. Download TruthfulQA (stress-test set) and create a questions file:
+2. Download HotpotQA (primary) and create a dataset file:
+
+```bash
+python scripts/prepare_hotpotqa.py --config config/default.yaml
+```
+
+3. Download TruthfulQA (stress-test set) and create a dataset file:
 
 ```bash
 python scripts/prepare_truthfulqa.py --config config/default.yaml

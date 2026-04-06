@@ -149,16 +149,11 @@ def build_project_schema(df: pd.DataFrame) -> pd.DataFrame:
     project_df = pd.DataFrame(
         {
             "id": df["sample_id"],
+            "dataset": "truthfulqa",
             "question": df["question"],
             "category": df["category"],
             "reference_answer": df["best_answer"],
             "source": df["source"],
-            "baseline_answer": None,
-            "retrieved_passages": None,
-            "support_score": None,
-            "support_label": None,
-            "corrected_answer": None,
-            "final_label": None,
         }
     )
     return project_df
