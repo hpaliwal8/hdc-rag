@@ -1,28 +1,9 @@
 paths:
-  corpus_dir: data/raw/corpus
-  corpus_passages: data/processed/corpus_passages.jsonl
-  index_dir: data/index
   questions_path: data/processed/questions.jsonl
   outputs_dir: data/outputs
 
-chunking:
-  chunk_words: 220
-  overlap_words: 40
-
-embedding:
-  model_name: intfloat/e5-base-v2
-  batch_size: 32
-
-retrieval:
-  top_k: 5
-  bm25_k: 20
-  alpha: 0.85
-
 baseline:
   mode: custom  # options: dummy | custom
-
-correction:
-  mode: dummy  # options: dummy | custom
 
 llm:
   provider: ollama
@@ -36,9 +17,3 @@ llm:
   prompt:
     baseline_system: "You are a precise, factual assistant. Answer concisely and do not speculate."
     baseline_style: "Answer the question concisely and factually. If you are unsure, say you don't know."
-    correction_system: "You are a grounded assistant. Use only the provided evidence."
-    correction_style: "Rewrite the answer using ONLY the evidence. If insufficient, say you don't know."
-
-support:
-  supported_threshold: 0.75
-  uncertain_threshold: 0.5
