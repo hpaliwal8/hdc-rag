@@ -16,6 +16,3 @@ __pycache__/
 *.parquet
 *.csv
 *.jsonl
-/data/index/
-/data/processed/
-/data/outputs/
