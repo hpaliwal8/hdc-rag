@@ -55,5 +55,40 @@ python scripts/ollama_check.py --config config/default.yaml
 - Add HotpotQA loader + sampler.
 - Add multi-model + prompt-variant experiment runner.
 - Add NLI-based labeling and analysis scripts.
+ 
+## Experiments
+
+Run all models × prompt variants:
+
+```bash
+python scripts/run_experiments.py --config config/default.yaml --limit 50
+```
+
+To run only one dataset:
+
+```bash
+python scripts/run_experiments.py --config config/default.yaml --dataset hotpotqa --limit 50
+```
+
+### HF/Colab Support
+
+You can run Hugging Face models in Colab by setting `provider: hf` in `config/default.yaml` and using HF model IDs.
+For example:
+
+```yaml
+experiments:
+  models:
+    - id: qwen2.5-7b-instruct
+      provider: hf
+      model: Qwen/Qwen2.5-7B-Instruct
+```
+
+In Colab, install deps:
+
+```bash
+pip install transformers accelerate torch
+```
+
+Optional: enable 4‑bit/8‑bit quantization in `experiments.hf` (requires `bitsandbytes`).
 
 Legacy RAG code is archived under `legacy_rag/`.

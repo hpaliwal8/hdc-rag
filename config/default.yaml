@@ -18,3 +18,40 @@ llm:
   prompt:
     baseline_system: "You are a precise, factual assistant. Answer concisely and do not speculate."
     baseline_style: "Answer the question concisely and factually. If you are unsure, say you don't know."
+
+experiments:
+  datasets:
+    - id: hotpotqa
+      path: data/processed/hotpotqa.jsonl
+    - id: truthfulqa
+      path: data/processed/truthfulqa.jsonl
+  models:
+    - id: phi-4-mini-instruct
+      provider: hf
+      model: microsoft/Phi-4-mini-instruct
+    - id: mistral-7b-instruct
+      provider: hf
+      model: mistralai/Mistral-7B-Instruct-v0.3
+    - id: qwen2.5-7b-instruct
+      provider: hf
+      model: Qwen/Qwen2.5-7B-Instruct
+    - id: llama-3.1-8b-instruct
+      provider: hf
+      model: meta-llama/Llama-3.1-8B-Instruct
+  hf:
+    device_map: auto
+    torch_dtype: auto  # auto | float16 | bfloat16
+    trust_remote_code: false
+    use_chat_template: true
+    load_in_4bit: false
+    load_in_8bit: false
+  prompts:
+    - id: plain
+      system: "You are a helpful assistant."
+      template: "Question: {question}\nAnswer:"
+    - id: abstain
+      system: "You are a careful assistant. Do not guess."
+      template: "Question: {question}\nIf you are unsure, say \"I don't know.\" Answer:"
+    - id: reasoning
+      system: "You are a careful assistant. Use step-by-step reasoning internally."
+      template: "Question: {question}\nAnswer: If evidence is insufficient, say so."
