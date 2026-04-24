@@ -21,3 +21,4 @@ You'll see a license agreement form — fill in your details and click Agree. Me
 That's it.)
 
 !python scripts/run_experiments.py --config config/default.yaml --dataset hotpotqa --limit 500 --output "/content/drive/MyDrive/hdc-rag-outputs/hotpotqa_llama31.jsonl"
+(this command this expected to run 1-1.25 hrs)

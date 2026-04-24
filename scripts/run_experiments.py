@@ -207,9 +207,8 @@ def main() -> None:
                             "answer": answer,
                         }
 
-                        f.write(
-                            json_dumps(record) + "\n"
-                        )
+                        f.write(json_dumps(record) + "\n")
+                        f.flush()
 
     print(f"Wrote experiment outputs to {out_path}")
 
