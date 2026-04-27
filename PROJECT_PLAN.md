@@ -47,7 +47,10 @@ The model gets individual facts right but chains them incorrectly across hops. S
 Catch-all for neutral NLI cases where no specific heuristic fires. The answer goes beyond the evidence without directly contradicting it. If this label dominates (>40% of hallucinations), heuristics need improvement via manual spot-checking.
 
 ### `overconfident_abstention_failure`
-Cross-cutting flag: the model hallucinated an answer when it should have abstained. Applied on top of any hallucination type when the model gives a confident wrong answer on a question where abstention would have been appropriate.
+Cross-cutting flag: the model hallucinated an answer when it should have abstained. Cannot be determined per-record — requires comparing the `plain` and `abstain` prompt results for the same (model, question) pair. Implemented as a second pass in `compute_metrics.py`:
+- Plain prompt → hallucinated
+- Abstain prompt → abstained
+- If both true → flag the plain prompt record as `overconfident_abstention_failure`
 
 ## Labeling Methodology (NLI + Heuristics)
 
@@ -67,7 +70,7 @@ Use a **DeBERTa‑MNLI** cross‑encoder as an NLI judge.
 - If entity present but attribute mismatch (date/number/location) → attribute error.
 - If HotpotQA question is bridge/comparison and evidence has parts but answer neutral → multi‑hop reasoning error.
 - Otherwise → unsupported inference.
-- If hallucinated and no abstention → overconfident abstention failure flag.
+- `overconfident_abstention_failure` is computed in `compute_metrics.py` as a cross-record second pass, not during per-record labeling.
 
 ## Prompt Variants (3)
 
