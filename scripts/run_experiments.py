@@ -106,6 +106,8 @@ def hf_generate(
     temperature = float(options.get("temperature", 0.2))
     top_p = float(options.get("top_p", 0.9))
 
+    input_length = inputs["input_ids"].shape[1]
+
     with torch.no_grad():
         output = model.generate(
             **inputs,
@@ -114,7 +116,7 @@ def hf_generate(
             temperature=temperature,
             top_p=top_p,
         )
-    text = tokenizer.decode(output[0], skip_special_tokens=True)
+    text = tokenizer.decode(output[0][input_length:], skip_special_tokens=True)
     return text.strip()
 
 

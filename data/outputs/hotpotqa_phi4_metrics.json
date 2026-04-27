@@ -1,0 +1,46 @@
+{
+  "summary": [
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "abstain",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0268,
+      "hallucination_rate": 0.0,
+      "abstention_rate": 0.994,
+      "type_counts": {}
+    },
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "plain",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0354,
+      "hallucination_rate": 0.972,
+      "abstention_rate": 0.0,
+      "type_counts": {
+        "contradiction_to_evidence": 177,
+        "attribute_error": 105,
+        "unsupported_inference": 133,
+        "entity_error": 71
+      }
+    },
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "reasoning",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0205,
+      "hallucination_rate": 0.898,
+      "abstention_rate": 0.062,
+      "type_counts": {
+        "attribute_error": 164,
+        "contradiction_to_evidence": 119,
+        "entity_error": 60,
+        "unsupported_inference": 106
+      }
+    }
+  ],
+  "total_records": 1500,
+  "overconfident_abstention_failures": 483
+}
