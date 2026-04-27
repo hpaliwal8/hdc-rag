@@ -1,0 +1,51 @@
+{
+  "summary": [
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "abstain",
+      "total": 500,
+      "exact_match": 0.008,
+      "token_f1": 0.0244,
+      "hallucination_rate": 0.06,
+      "abstention_rate": 0.884,
+      "type_counts": {
+        "multi_hop_reasoning_error": 11,
+        "attribute_error": 4,
+        "entity_error": 5,
+        "contradiction_to_evidence": 10
+      }
+    },
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "plain",
+      "total": 500,
+      "exact_match": 0.004,
+      "token_f1": 0.0693,
+      "hallucination_rate": 0.864,
+      "abstention_rate": 0.004,
+      "type_counts": {
+        "contradiction_to_evidence": 322,
+        "multi_hop_reasoning_error": 71,
+        "attribute_error": 21,
+        "entity_error": 18
+      }
+    },
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "reasoning",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0321,
+      "hallucination_rate": 0.906,
+      "abstention_rate": 0.008,
+      "type_counts": {
+        "contradiction_to_evidence": 214,
+        "attribute_error": 129,
+        "entity_error": 26,
+        "multi_hop_reasoning_error": 84
+      }
+    }
+  ],
+  "total_records": 1500,
+  "overconfident_abstention_failures": 395
+}

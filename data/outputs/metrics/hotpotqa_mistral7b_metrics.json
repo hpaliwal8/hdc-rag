@@ -1,0 +1,51 @@
+{
+  "summary": [
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "abstain",
+      "total": 500,
+      "exact_match": 0.004,
+      "token_f1": 0.0461,
+      "hallucination_rate": 0.16,
+      "abstention_rate": 0.78,
+      "type_counts": {
+        "attribute_error": 14,
+        "contradiction_to_evidence": 30,
+        "multi_hop_reasoning_error": 27,
+        "entity_error": 9
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "plain",
+      "total": 500,
+      "exact_match": 0.002,
+      "token_f1": 0.0484,
+      "hallucination_rate": 0.93,
+      "abstention_rate": 0.002,
+      "type_counts": {
+        "attribute_error": 86,
+        "entity_error": 46,
+        "multi_hop_reasoning_error": 108,
+        "contradiction_to_evidence": 225
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "reasoning",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.021,
+      "hallucination_rate": 0.836,
+      "abstention_rate": 0.054,
+      "type_counts": {
+        "attribute_error": 227,
+        "multi_hop_reasoning_error": 120,
+        "contradiction_to_evidence": 48,
+        "entity_error": 23
+      }
+    }
+  ],
+  "total_records": 1500,
+  "overconfident_abstention_failures": 369
+}

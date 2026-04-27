@@ -1,0 +1,50 @@
+{
+  "summary": [
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "abstain",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0229,
+      "hallucination_rate": 0.042,
+      "abstention_rate": 0.916,
+      "type_counts": {
+        "multi_hop_reasoning_error": 9,
+        "contradiction_to_evidence": 9,
+        "entity_error": 1,
+        "attribute_error": 2
+      }
+    },
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "plain",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.0348,
+      "hallucination_rate": 0.92,
+      "abstention_rate": 0.002,
+      "type_counts": {
+        "multi_hop_reasoning_error": 75,
+        "contradiction_to_evidence": 219,
+        "attribute_error": 128,
+        "entity_error": 38
+      }
+    },
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "reasoning",
+      "total": 500,
+      "exact_match": 0.0,
+      "token_f1": 0.016,
+      "hallucination_rate": 0.744,
+      "abstention_rate": 0.09,
+      "type_counts": {
+        "contradiction_to_evidence": 30,
+        "attribute_error": 341,
+        "multi_hop_reasoning_error": 1
+      }
+    }
+  ],
+  "total_records": 1500,
+  "overconfident_abstention_failures": 425
+}
