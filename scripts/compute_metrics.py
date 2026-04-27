@@ -8,7 +8,7 @@ from collections import defaultdict
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.metrics.eval import compute_summary
-from src.utils.io import read_jsonl
+from src.utils.io import read_jsonl, ensure_dir
 from src.utils.logging import setup_logging
 
 
@@ -83,6 +83,7 @@ def main() -> None:
     print_summary(summary)
 
     if args.output:
+        ensure_dir(os.path.dirname(args.output))
         with open(args.output, "w", encoding="utf-8") as f:
             json.dump({"summary": summary, "total_records": len(records),
                        "overconfident_abstention_failures": overconfident_count}, f, indent=2)

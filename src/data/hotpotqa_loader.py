@@ -16,6 +16,7 @@ class HotpotQASample:
     supporting_facts: List[Tuple[str, int]]
     context: Any
     level: str
+    question_type: str
 
 
 def _normalize_supporting_facts(raw: Any) -> List[Tuple[str, int]]:
@@ -62,6 +63,7 @@ def _normalize_row(row: Dict[str, Any]) -> HotpotQASample:
     supporting_facts = _normalize_supporting_facts(row.get("supporting_facts"))
     context = row.get("context")
     level = str(row.get("level", "")).strip()
+    question_type = str(row.get("type", "")).strip()
 
     return HotpotQASample(
         sample_id=sample_id,
@@ -70,6 +72,7 @@ def _normalize_row(row: Dict[str, Any]) -> HotpotQASample:
         supporting_facts=supporting_facts,
         context=context,
         level=level,
+        question_type=question_type,
     )
 
 
@@ -112,6 +115,7 @@ def build_project_schema(df: pd.DataFrame) -> pd.DataFrame:
             "supporting_facts": df["supporting_facts"],
             "context": df["context"] if "context" in df.columns else None,
             "level": df["level"] if "level" in df.columns else None,
+            "type": df["question_type"] if "question_type" in df.columns else None,
         }
     )
     return project_df
