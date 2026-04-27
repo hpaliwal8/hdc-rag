@@ -168,6 +168,14 @@ def main() -> None:
                 provider = model.get("provider", "ollama")
                 model_name = model.get("model")
 
+                if provider == "hf" and _HF_CACHE:
+                    import gc
+                    import torch
+                    _HF_CACHE.clear()
+                    gc.collect()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+
                 for prompt in prompts:
                     prompt_id = prompt.get("id")
                     system = prompt.get("system", "")

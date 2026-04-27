@@ -25,12 +25,29 @@ Design and execute a comparative study of hallucinations across four LLMs on two
 
 ## Hallucination Taxonomy
 
-- Entity error
-- Attribute error
-- Multi-hop reasoning error
-- Unsupported inference
-- Contradiction to evidence
-- Overconfident abstention failure
+### `supported`
+The model's answer is entailed by the evidence. Not a hallucination.
+
+### `abstained`
+The model correctly declined to answer (e.g. "I don't know", "I'm not sure", "insufficient evidence"). Not a hallucination — this is the desired behavior under uncertainty.
+
+### `contradiction_to_evidence`
+The model's answer directly conflicts with the supporting facts. Detected by NLI (contradiction label). Example: evidence says "founded in 1755", model says "founded in 1800".
+
+### `entity_error`
+The model names a person, place, or thing that does not appear in the evidence at all. Detected by checking if named entities in the answer are present in the evidence string.
+
+### `attribute_error`
+The correct entity is mentioned but a property is wrong — typically a date, number, or location. Detected by finding entities that appear in both answer and evidence, but with mismatched numeric/date values.
+
+### `multi_hop_reasoning_error`
+The model gets individual facts right but chains them incorrectly across hops. Specific to HotpotQA `bridge` and `comparison` questions where multiple evidence passages must be combined. Detected when question type is multi-hop and evidence is partially matched but NLI is neutral.
+
+### `unsupported_inference`
+Catch-all for neutral NLI cases where no specific heuristic fires. The answer goes beyond the evidence without directly contradicting it. If this label dominates (>40% of hallucinations), heuristics need improvement via manual spot-checking.
+
+### `overconfident_abstention_failure`
+Cross-cutting flag: the model hallucinated an answer when it should have abstained. Applied on top of any hallucination type when the model gives a confident wrong answer on a question where abstention would have been appropriate.
 
 ## Labeling Methodology (NLI + Heuristics)
 
