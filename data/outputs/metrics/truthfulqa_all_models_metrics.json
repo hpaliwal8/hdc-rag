@@ -1,0 +1,162 @@
+{
+  "summary": [
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "abstain",
+      "total": 120,
+      "exact_match": 0.0167,
+      "token_f1": 0.0783,
+      "hallucination_rate": 0.1167,
+      "abstention_rate": 0.8333,
+      "type_counts": {
+        "unsupported_inference": 11,
+        "contradiction_to_evidence": 3
+      }
+    },
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "plain",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1332,
+      "hallucination_rate": 0.925,
+      "abstention_rate": 0.025,
+      "type_counts": {
+        "unsupported_inference": 79,
+        "contradiction_to_evidence": 32
+      }
+    },
+    {
+      "model_id": "llama-3.1-8b-instruct",
+      "prompt_id": "reasoning",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.0898,
+      "hallucination_rate": 0.8333,
+      "abstention_rate": 0.05,
+      "type_counts": {
+        "unsupported_inference": 87,
+        "contradiction_to_evidence": 13
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "abstain",
+      "total": 120,
+      "exact_match": 0.0083,
+      "token_f1": 0.1765,
+      "hallucination_rate": 0.2167,
+      "abstention_rate": 0.7667,
+      "type_counts": {
+        "unsupported_inference": 22,
+        "contradiction_to_evidence": 4
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "plain",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1293,
+      "hallucination_rate": 0.9667,
+      "abstention_rate": 0.0167,
+      "type_counts": {
+        "unsupported_inference": 104,
+        "contradiction_to_evidence": 12
+      }
+    },
+    {
+      "model_id": "mistral-7b-instruct",
+      "prompt_id": "reasoning",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.0973,
+      "hallucination_rate": 0.8333,
+      "abstention_rate": 0.0583,
+      "type_counts": {
+        "unsupported_inference": 96,
+        "contradiction_to_evidence": 4
+      }
+    },
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "abstain",
+      "total": 120,
+      "exact_match": 0.025,
+      "token_f1": 0.0636,
+      "hallucination_rate": 0.0417,
+      "abstention_rate": 0.9333,
+      "type_counts": {
+        "contradiction_to_evidence": 2,
+        "unsupported_inference": 3
+      }
+    },
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "plain",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1465,
+      "hallucination_rate": 0.9333,
+      "abstention_rate": 0.0083,
+      "type_counts": {
+        "unsupported_inference": 82,
+        "contradiction_to_evidence": 30
+      }
+    },
+    {
+      "model_id": "phi-4-mini-instruct",
+      "prompt_id": "reasoning",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1358,
+      "hallucination_rate": 0.8333,
+      "abstention_rate": 0.0833,
+      "type_counts": {
+        "unsupported_inference": 86,
+        "contradiction_to_evidence": 14
+      }
+    },
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "abstain",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1669,
+      "hallucination_rate": 0.2833,
+      "abstention_rate": 0.7083,
+      "type_counts": {
+        "unsupported_inference": 28,
+        "contradiction_to_evidence": 6
+      }
+    },
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "plain",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.1086,
+      "hallucination_rate": 0.8833,
+      "abstention_rate": 0.0167,
+      "type_counts": {
+        "unsupported_inference": 94,
+        "contradiction_to_evidence": 12
+      }
+    },
+    {
+      "model_id": "qwen2.5-7b-instruct",
+      "prompt_id": "reasoning",
+      "total": 120,
+      "exact_match": 0.0,
+      "token_f1": 0.0643,
+      "hallucination_rate": 0.7667,
+      "abstention_rate": 0.1417,
+      "type_counts": {
+        "unsupported_inference": 89,
+        "contradiction_to_evidence": 3
+      }
+    }
+  ],
+  "total_records": 1440,
+  "overconfident_abstention_failures": 357
+}
