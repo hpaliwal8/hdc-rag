@@ -5,3 +5,5 @@ tqdm>=4.66
 datasets>=2.18.0
 transformers>=4.40
 accelerate>=0.26
+seaborn>=0.13
+matplotlib>=3.7
