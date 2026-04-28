@@ -21,13 +21,13 @@
       "total": 500,
       "exact_match": 0.004,
       "token_f1": 0.0693,
-      "hallucination_rate": 0.864,
-      "abstention_rate": 0.004,
+      "hallucination_rate": 0.402,
+      "abstention_rate": 0.466,
       "type_counts": {
-        "contradiction_to_evidence": 322,
-        "multi_hop_reasoning_error": 71,
+        "contradiction_to_evidence": 122,
         "attribute_error": 21,
-        "entity_error": 18
+        "multi_hop_reasoning_error": 43,
+        "entity_error": 15
       }
     },
     {
@@ -36,16 +36,16 @@
       "total": 500,
       "exact_match": 0.0,
       "token_f1": 0.0321,
-      "hallucination_rate": 0.906,
-      "abstention_rate": 0.008,
+      "hallucination_rate": 0.58,
+      "abstention_rate": 0.334,
       "type_counts": {
-        "contradiction_to_evidence": 214,
-        "attribute_error": 129,
-        "entity_error": 26,
-        "multi_hop_reasoning_error": 84
+        "attribute_error": 118,
+        "contradiction_to_evidence": 84,
+        "multi_hop_reasoning_error": 70,
+        "entity_error": 18
       }
     }
   ],
   "total_records": 1500,
-  "overconfident_abstention_failures": 395
+  "overconfident_abstention_failures": 169
 }

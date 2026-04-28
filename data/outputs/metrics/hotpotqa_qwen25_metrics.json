@@ -6,10 +6,10 @@
       "total": 500,
       "exact_match": 0.0,
       "token_f1": 0.0229,
-      "hallucination_rate": 0.042,
-      "abstention_rate": 0.916,
+      "hallucination_rate": 0.04,
+      "abstention_rate": 0.918,
       "type_counts": {
-        "multi_hop_reasoning_error": 9,
+        "multi_hop_reasoning_error": 8,
         "contradiction_to_evidence": 9,
         "entity_error": 1,
         "attribute_error": 2
@@ -21,13 +21,13 @@
       "total": 500,
       "exact_match": 0.0,
       "token_f1": 0.0348,
-      "hallucination_rate": 0.92,
-      "abstention_rate": 0.002,
+      "hallucination_rate": 0.91,
+      "abstention_rate": 0.012,
       "type_counts": {
-        "multi_hop_reasoning_error": 75,
+        "multi_hop_reasoning_error": 71,
         "contradiction_to_evidence": 219,
         "attribute_error": 128,
-        "entity_error": 38
+        "entity_error": 37
       }
     },
     {
@@ -46,5 +46,5 @@
     }
   ],
   "total_records": 1500,
-  "overconfident_abstention_failures": 425
+  "overconfident_abstention_failures": 421
 }

@@ -21,11 +21,11 @@
       "total": 500,
       "exact_match": 0.008,
       "token_f1": 0.0664,
-      "hallucination_rate": 0.878,
-      "abstention_rate": 0.0,
+      "hallucination_rate": 0.876,
+      "abstention_rate": 0.002,
       "type_counts": {
         "contradiction_to_evidence": 298,
-        "attribute_error": 51,
+        "attribute_error": 50,
         "multi_hop_reasoning_error": 64,
         "entity_error": 26
       }
@@ -36,16 +36,16 @@
       "total": 500,
       "exact_match": 0.0,
       "token_f1": 0.0356,
-      "hallucination_rate": 0.83,
-      "abstention_rate": 0.066,
+      "hallucination_rate": 0.818,
+      "abstention_rate": 0.078,
       "type_counts": {
-        "attribute_error": 122,
+        "attribute_error": 120,
         "contradiction_to_evidence": 180,
         "entity_error": 29,
-        "multi_hop_reasoning_error": 84
+        "multi_hop_reasoning_error": 80
       }
     }
   ],
   "total_records": 1500,
-  "overconfident_abstention_failures": 405
+  "overconfident_abstention_failures": 404
 }
